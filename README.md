@@ -128,6 +128,15 @@ ffprobe on a big library on a hard drive is slow (about 3,800 episodes took roug
 - Audio codec/channel info in the report (already parsed, just not shown)
 - Release binaries
 
+## Optional: run it in the background
+
+[`contrib/run-dubcheck.ps1`](contrib/run-dubcheck.ps1) is a Windows wrapper for running dubcheck unattended, for example from a startup script or a scheduled task. This part is entirely optional.
+
+1. Put `dubcheck.exe` and the script in the same folder.
+2. Run `powershell -File run-dubcheck.ps1 -Library <your library>`.
+
+It runs at below-normal priority with a low `--jobs` value, skips itself if a run finished in the last 6 hours or one is already going (lock file), writes `latest.txt` and `latest.json` next to the script, and keeps a small rolling `dubcheck.log`. It swallows its own errors and always exits 0, so it can't break whatever launched it.
+
 ## Development
 
 ```
