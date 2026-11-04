@@ -1,0 +1,26 @@
+[package]
+name = "dubcheck"
+version = "0.1.0"
+edition = "2021"
+description = "Read-only audit of an anime library: English/Japanese audio, missing episodes, duplicates"
+license = "MIT"
+readme = "README.md"
+rust-version = "1.80"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+rayon = "1"
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+walkdir = "2"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
